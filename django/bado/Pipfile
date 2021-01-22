@@ -1,0 +1,34 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pylint = "*"
+flake8 = "*"
+black = "*"
+autopep8 = "*"
+pydocstyle = "*"
+pycodestyle = "*"
+
+[packages]
+django = "*"
+django-allauth = "*"
+pillow = "*"
+django-crispy-forms = "*"
+stripe = "*"
+django-countries = "*"
+dj-database-url = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
+boto3 = "*"
+django-storages = "*"
+coverage = "*"
+django-datetime-widget2 = "*"
+django-bootstrap-datepicker-plus = "*"
+
+[requires]
+python_version = "3.8"
+
+[pipenv]
+allow_prereleases = true

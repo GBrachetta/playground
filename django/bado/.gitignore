@@ -1,0 +1,13 @@
+.vscode
+**/.pyc
+**/__pycache__
+.pytest_cache
+.vscode
+venv
+*.sqlite3
+.env
+.venv
+PipfileOrig
+PipfileOrig.lock
+sett.json
+Pipfile.lock
