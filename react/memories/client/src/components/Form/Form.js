@@ -1,9 +1,10 @@
-import { Button, Paper, TextField, Typography } from '@material-ui/core';
-import { useState, useEffect } from 'react';
-import FileBase from 'react-file-base64';
+import React, { useState, useEffect } from 'react';
+import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { createPost, updatePost } from '../../actions/posts';
+import FileBase from 'react-file-base64';
+
 import useStyles from './styles';
+import { createPost, updatePost } from '../../actions/posts';
 
 const Form = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -55,7 +56,7 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {currentId ? 'Editing' : 'Creating'} a Memory
+          {currentId ? `Editing "${post.title}"` : 'Creating a Memory'}
         </Typography>
         <TextField
           name="creator"
@@ -80,6 +81,8 @@ const Form = ({ currentId, setCurrentId }) => {
           variant="outlined"
           label="Message"
           fullWidth
+          multiline
+          rows={4}
           value={postData.message}
           onChange={(e) =>
             setPostData({ ...postData, message: e.target.value })
@@ -88,7 +91,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags"
+          label="Tags (coma separated)"
           fullWidth
           value={postData.tags}
           onChange={(e) =>
@@ -114,7 +117,6 @@ const Form = ({ currentId, setCurrentId }) => {
         >
           Submit
         </Button>
-
         <Button
           variant="contained"
           color="secondary"
