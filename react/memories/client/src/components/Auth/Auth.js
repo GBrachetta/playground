@@ -13,26 +13,46 @@ import Input from './Input';
 import Icon from './icon';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { signIn, signUp } from '../../actions/auth';
 
 import useStyles from './styles.js';
+
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 
 const Auth = () => {
   const classes = useStyles();
   const history = useHistory();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleChange = () => {};
+    if (isSignup) {
+      dispatch(signUp(formData, history));
+    } else {
+      dispatch(signIn(formData, history));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+    setShowPassword(false);
   };
 
   const googleSuccess = async (res) => {
@@ -72,8 +92,8 @@ const Auth = () => {
                   half
                 />
                 <Input
-                  name="firstName"
-                  label="First Name"
+                  name="lastName"
+                  label="Last Name"
                   handleChange={handleChange}
                   half
                 />

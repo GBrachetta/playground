@@ -3,5 +3,5 @@ client/node_modules
 server/node_modules
 server/.env
 .vscode
-.eslintrc.js
+.eslintrc*
 client/.env
